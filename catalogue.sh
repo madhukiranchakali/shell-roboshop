@@ -8,6 +8,7 @@ N="\e[0m"
 
 LOGS_FOLDER="/var/log/Shell-roboshop"
 SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
+MONGODB_HOST=mongodb.madhukiran.store
 SCRIPT_DIR=$PWD
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
@@ -85,7 +86,7 @@ VALIDATE(){
 
    INDEX=$(mongosh mongodb.madhukiran.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
    if [ $INDEX -le 0 ]; then
-        mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js &>>$LOG_FILE
+        mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
         VALIDATE $? "Load catalogue products"
     else 
         echo -e "Catalogue products already loaded...$Y SKIPPING $N"   
