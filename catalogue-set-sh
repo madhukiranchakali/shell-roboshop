@@ -28,10 +28,7 @@ fi
 
  ##### Nodejs ####
    dnf module disable nodejs -y &>>$LOG_FILE
-   
    dnf module enable nodejs:20 -y &>>$LOG_FILE
-   
-
    dnf install nodejs -y &>>$LOG_FILE
    
    id roboshop &>>$LOG_FILE
@@ -70,7 +67,7 @@ fi
 
    cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
    
-   dnf install mongodb-mongosh -y &>>$LOG_FILE
+   dnf install mongodb-mongoshrt -y &>>$LOG_FILE
    
 
    INDEX=$(mongosh mongodb.madhukiran.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
