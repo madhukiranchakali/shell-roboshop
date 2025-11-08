@@ -83,7 +83,7 @@ VALIDATE(){
    dnf install mongodb-mongosh -y &>>$LOG_FILE
    VALIDATE $? "Installing mongoDB client"
 
-   INDEX=$(mongosh mongodb.madhukiran.store --quiet --eval "db.getMongo().getDBNames().indexof('catalogue')")
+   INDEX=$(mongosh mongodb.madhukiran.store --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
    if [ $INDEX -le 0 ]; then
         mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js &>>$LOG_FILE
         VALIDATE $? "Load catalogue products"
