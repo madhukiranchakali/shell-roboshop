@@ -39,7 +39,19 @@ do
         }
         '
 
-done      
+done    
+
+cp mongo.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "Adding Mongodb repo"
+
+dnf install monngodb.org -y &>>$LOG_FILE
+VALIDATE $? "Installing mongoDB"
+
+systemctl enable mongodb
+VALIDATE $? "enable mongoDB"
+
+systemctl start mongoddb
+VALIDATE $? "start mongoDB"
 
 
 
